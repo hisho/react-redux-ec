@@ -1,4 +1,4 @@
-import {SIGN_IN, SIGN_OUT} from "@src/reducks/users/actions";
+import {ACTION_TYPE} from "@src/reducks/users/actions";
 
 export type RootStateType = {
   users: UsersType['state']
@@ -16,6 +16,6 @@ type usersStateType = {
 }
 
 type UsersActionType = {
-  type: typeof SIGN_IN | typeof SIGN_OUT;
+  type: keyof typeof ACTION_TYPE;
   payload: usersStateType;
 }

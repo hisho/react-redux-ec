@@ -1,7 +1,10 @@
 import {initialState} from "@src/reducks/store/initialState";
 import {UsersType} from "@src/reducks/type";
 
-export const UsersReducer = (state = initialState.users, action: UsersType["action"]) => {
+export const UsersReducer = (
+  state = initialState.users,
+  action: UsersType["action"]
+) => {
   switch (action.type) {
     case "SIGN_IN":
       return {
