@@ -1,6 +1,7 @@
 import {initialState} from "@src/reducks/store/initialState";
 import {UsersType} from "@src/reducks/type";
 
+//userのアクションを呼ぶReducer
 export const UsersReducer = (
   state = initialState.users,
   action: UsersType["action"]
@@ -17,6 +18,8 @@ export const UsersReducer = (
         ...action.payload
       }
     default:
-      return state
+      // console.error(`type is ${Object.values(ACTION_TYPE).join(' or ')}`);
+      // throw new Error(`type is ${Object.values(ACTION_TYPE).join(' or ')}`);
+      return state;
   }
 }
