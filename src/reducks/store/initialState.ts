@@ -4,6 +4,7 @@ import {RootStateType} from "@src/reducks/type";
 export const initialState: RootStateType = {
   users: {
     isSignedIn: false,
+    role: "",
     uid: "",
     username: ""
   }

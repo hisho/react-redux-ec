@@ -13,9 +13,10 @@ export type UsersType = {
 
 //Usersのstateの型
 type usersStateType = {
-  isSignedIn: boolean,
-  uid: string,
-  username: string
+  isSignedIn: boolean;
+  role: string;
+  uid: string;
+  username: string;
 }
 
 //Usersのactionの型

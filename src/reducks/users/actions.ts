@@ -13,6 +13,7 @@ export const signInAction = (userState: Omit<UsersType['state'], 'isSignedIn'>):
     type: ACTION_TYPE.SIGN_IN,
     payload: {
       isSignedIn: true,
+      role: userState.role,
       uid: userState.uid,
       username: userState.username
     }
@@ -25,6 +26,7 @@ export const signOutAction = (): UsersType['action'] => {
     type: ACTION_TYPE.SIGN_OUT,
     payload: {
       isSignedIn: false,
+      role: "",
       uid: "",
       username: ""
     }
