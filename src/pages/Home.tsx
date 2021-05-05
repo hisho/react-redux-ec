@@ -1,5 +1,5 @@
 import React from "react";
-import {getUserId, getUsername} from "@src/reducks/users/selector";
+import {getUserId, getUsername} from "@src/reducks/users/selectors";
 import {useSelector} from "react-redux";
 
 export const Home: React.VFC = () => {
