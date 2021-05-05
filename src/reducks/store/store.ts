@@ -1,10 +1,16 @@
-import {createStore as reduxCreateStore, combineReducers} from "redux";
+import {createStore as reduxCreateStore, combineReducers, applyMiddleware} from "redux";
+import {connectRouter, routerMiddleware} from 'connected-react-router'
 import {UsersReducer} from "@src/reducks/users/reducers";
+import {History} from "history";
 
-export const createStore = () => {
+export const createStore = (history: History) => {
   return reduxCreateStore(
     combineReducers({
+      router: connectRouter(history),
       users: UsersReducer
-    })
+    }),
+    applyMiddleware(
+      routerMiddleware(history),
+    ),
   )
 }
