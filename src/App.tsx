@@ -1,20 +1,10 @@
-import React from 'react';
-import {useDispatch, useSelector} from "react-redux";
-import {RootStateType} from "@src/reducks/type";
-import {signInAction} from "@src/reducks/users/actions";
+import React from "react";
+import {Router} from "@src/Router";
 
-function App() {
-  const dispatch = useDispatch();
-  const selector = useSelector((state:RootStateType) => state);
-  console.log(selector)
-
+export const App: React.VFC = () => {
   return (
-    <div>
-      <button type="button" onClick={() => dispatch(signInAction({uid: "ssssss",username: 'test'}))}>
-        Sign In
-      </button>
-    </div>
-  );
+    <main>
+      <Router/>
+    </main>
+  )
 }
-
-export default App;
