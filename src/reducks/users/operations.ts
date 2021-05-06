@@ -3,6 +3,8 @@ import {push} from "connected-react-router";
 import {auth, db, FirebaseTimestamp} from "@src/firebase";
 import {signInAction} from "@src/reducks/users/actions";
 import {RootStateType} from "@src/reducks/type";
+import firebase from "firebase/app";
+
 //firebaseのUserとdispatchを受け取りサインインする関数
 const setFirebaseUserData = async (user: firebase.User, dispatch: React.Dispatch<unknown>) => {
   const uid = user.uid;
