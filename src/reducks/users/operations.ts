@@ -123,3 +123,22 @@ export const signOut = () => {
       })
   }
 }
+
+//パスワードをリセットする時に実行する関数
+export const resetPassword = (email: string) => {
+  return async (dispatch: React.Dispatch<unknown>) => {
+    //メールアドレスに入力がない場合
+    if (email === '') {
+      alert('メールアドレスが空です。');
+      return false;
+    } else {
+      return auth.sendPasswordResetEmail(email)
+        .then(() => {
+          alert('パスワードのリセットメールを送信しました。');
+          dispatch(push('/signin'));
+        }).catch(() => {
+          alert('パスワードリセットに失敗しました。');
+        })
+    }
+  }
+}
