@@ -1,7 +1,7 @@
 import React from "react";
 import {push} from "connected-react-router";
 import {auth, db, FirebaseTimestamp} from "@src/firebase";
-import {signInAction} from "@src/reducks/users/actions";
+import {signInAction, signOutAction} from "@src/reducks/users/actions";
 import {RootStateType} from "@src/reducks/type";
 import firebase from "firebase/app";
 
@@ -93,6 +93,17 @@ export const signUp = (username: string, email: string, password: string, confir
               dispatch(push('/'));
             })
         }
+      })
+  }
+}
+
+//サインアウトする時に実行する関数
+export const signOut = () => {
+  return async (dispatch: React.Dispatch<unknown>) => {
+    auth.signOut()
+      .then(() => {
+        dispatch(signOutAction());
+        dispatch(push('/signin'))
       })
   }
 }
