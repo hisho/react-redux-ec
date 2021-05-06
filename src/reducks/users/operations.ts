@@ -37,8 +37,11 @@ export const signIn = (email: string, password: string) => {
     auth.signInWithEmailAndPassword(email, password)
       .then(result => {
         const user = result.user;
-
+        //サインインしている場合
         if (user) {
+          setFirebaseUserData(user, dispatch);
+          //Homeに遷移させる
+          dispatch(push('/'));
         }
       })
   }
