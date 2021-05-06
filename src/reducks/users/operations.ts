@@ -24,6 +24,22 @@ const setFirebaseUserData = async (user: firebase.User, dispatch: React.Dispatch
     })
 }
 
+//サインインしているかどうか監視し返す関数
+export const listenAuthState = () => {
+  return async (dispatch: React.Dispatch<unknown>) => {
+    return auth.onAuthStateChanged((user) => {
+      //サインインしている場合
+      if (user) {
+        setFirebaseUserData(user, dispatch);
+        //ユーザーが存在しない場合
+      } else {
+        //signinページに遷移させる
+        dispatch(push('/signin'))
+      }
+    })
+  }
+}
+
 //サインインする時に実行する関数
 export const signIn = (email: string, password: string) => {
   return async (dispatch: React.Dispatch<unknown>) => {
