@@ -3,6 +3,24 @@ import {push} from "connected-react-router";
 import {auth, db, FirebaseTimestamp} from "@src/firebase";
 import {signInAction} from "@src/reducks/users/actions";
 import {RootStateType} from "@src/reducks/type";
+//firebaseのUserとdispatchを受け取りサインインする関数
+const setFirebaseUserData = async (user: firebase.User, dispatch: React.Dispatch<unknown>) => {
+  const uid = user.uid;
+  //firebaseのusersからuidを検索してgetする
+  db.collection('users').doc(uid).get()
+    .then((snapshot) => {
+      //snapshotは返った来たユーザーのdata
+      //TODO asを無くす
+      const data = snapshot.data() as Omit<RootStateType["users"], 'isSignedIn'>;
+
+      //ユーザーの認証情報をセットする
+      dispatch(signInAction({
+        role: data.role,
+        uid: data.uid,
+        username: data.username
+      }))
+    })
+}
 
 //サインインする時に実行する関数
 export const signIn = (email: string, password: string) => {
@@ -21,25 +39,6 @@ export const signIn = (email: string, password: string) => {
         const user = result.user;
 
         if (user) {
-          const uid = user.uid;
-
-          //firebaseのusersからuidを検索してgetする
-          db.collection('users').doc(uid).get()
-            .then((snapshot) => {
-              //snapshotは返った来たユーザーのdata
-              //TODO asを無くす
-              const data = snapshot.data() as Omit<RootStateType["users"], 'isSignedIn'>;
-
-              //ユーザーの認証情報をセットする
-              dispatch(signInAction({
-                role: data.role,
-                uid: data.uid,
-                username: data.username
-              }))
-
-              //Homeに遷移させる
-              dispatch(push('/'))
-            })
         }
       })
   }
