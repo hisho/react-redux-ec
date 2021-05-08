@@ -1,6 +1,6 @@
 import React from "react";
 import {Route, Switch} from "react-router";
-import {Home, SignIn, SignUp, Reset} from "@src/pages";
+import {Home, SignIn, SignUp, Reset,ProductEdit} from "@src/pages";
 import {Auth} from "@src/Auth";
 
 export const Router: React.VFC = () => {
@@ -11,6 +11,7 @@ export const Router: React.VFC = () => {
       <Route exact path="/signup" component={SignUp}/>
       <Auth>
         <Route exact path="(/)?" component={Home}/>
+        <Route exact path="(/product/edit)" component={ProductEdit}/>
       </Auth>
     </Switch>
   )
