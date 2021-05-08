@@ -2,38 +2,7 @@ import React, {ChangeEvent, useCallback, useState} from "react";
 import {PrimaryButton, SelectBox, TextInput} from "@src/components/UIkit";
 import {useDispatch} from "react-redux";
 import {saveProducts} from "@src/reducks/products/operations";
-
-//カテゴリーのselectの値
-export const categories = [
-  {
-    id: "tops",
-    name: "トップス"
-  },
-  {
-    id: "shirt",
-    name: "シャツ"
-  },
-  {
-    id: "pants",
-    name: "パンツ"
-  }
-];
-
-//ジェンダーのselectの値
-export const genders = [
-  {
-    id: "all",
-    name: "すべて"
-  },
-  {
-    id: "male",
-    name: "男性"
-  },
-  {
-    id: "female",
-    name: "女性"
-  }
-];
+import {categories,genders} from "@src/reducks/products/type";
 
 //商品を追加・編集するページ
 export const ProductEdit: React.VFC = () => {
