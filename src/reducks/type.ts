@@ -7,12 +7,12 @@ export type RootStateType = {
 
 //Usersの型をまとめた型
 export type UsersType = {
-  state: usersStateType
+  state: UsersStateType
   action: UsersActionType
 }
 
 //Usersのstateの型
-type usersStateType = {
+type UsersStateType = {
   isSignedIn: boolean;
   role: string;
   uid: string;
@@ -22,5 +22,5 @@ type usersStateType = {
 //Usersのactionの型
 type UsersActionType = {
   type: keyof typeof ACTION_TYPE;
-  payload: usersStateType;
+  payload: UsersStateType;
 }
