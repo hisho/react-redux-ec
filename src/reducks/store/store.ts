@@ -1,6 +1,7 @@
 import {createStore as reduxCreateStore, combineReducers, applyMiddleware} from "redux";
 import {connectRouter, routerMiddleware} from 'connected-react-router'
 import {UsersReducer} from "@src/reducks/users/reducers";
+import {ProductsReducer} from "@src/reducks/products/reducers";
 import {History} from "history";
 import thunk from "redux-thunk";
 import {createLogger} from "redux-logger";
@@ -16,7 +17,8 @@ export const createStore = (history: History) => {
     //管理するステート
     combineReducers({
       router: connectRouter(history),
-      users: UsersReducer
+      users: UsersReducer,
+      products: ProductsReducer
     }),
     //ミドルウェアの設定
     applyMiddleware(
