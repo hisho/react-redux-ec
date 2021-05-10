@@ -3,10 +3,15 @@ import {PrimaryButton, SelectBox, TextInput} from "@src/components/UIkit";
 import {useDispatch} from "react-redux";
 import {saveProducts} from "@src/reducks/products/operations";
 import {categories,genders} from "@src/reducks/products/type";
+import {ImageArea} from "@src/components/products/ImageArea";
+import {imageType} from "@src/components/products/types";
 
 //商品を追加・編集するページ
 export const ProductEdit: React.VFC = () => {
   const dispatch = useDispatch();
+  //画像を管理するstate
+  const [images, setImages] = useState<imageType[]>([]);
+
   //商品名を管理するstate
   const [name, setName] = useState('');
 
@@ -41,6 +46,7 @@ export const ProductEdit: React.VFC = () => {
     <section>
       <h2 className="u-text__headline u-text-center">商品の登録・編集</h2>
       <div className="c-section-container">
+        <ImageArea images={images} setImages={setImages} />
         <TextInput label="商品名" value={name} onChange={inputName}/>
         <TextInput label="商品説明" value={description} onChange={inputDescription} multiline={true} rows={5}/>
         <SelectBox label="カテゴリー" select={setCategory} value={category} options={categories} />
@@ -48,7 +54,7 @@ export const ProductEdit: React.VFC = () => {
         <TextInput label="価格" value={price} onChange={inputPrice} type="number"/>
         <div className="module-spacer--medium"/>
         <div className="center">
-          <PrimaryButton label="商品情報を保存" onClick={() => dispatch(saveProducts(name,description,category,gender,price))} />
+          <PrimaryButton label="商品情報を保存" onClick={() => dispatch(saveProducts(images,name,description,category,gender,price))} />
         </div>
       </div>
     </section>

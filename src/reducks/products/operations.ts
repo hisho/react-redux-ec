@@ -1,6 +1,7 @@
 import React from "react";
 import {db, FirebaseTimestamp, FirebaseTimestampType} from "@src/firebase";
 import {push} from "connected-react-router";
+import {imageType} from "@src/components/products/types";
 
 //firebaseのdbのproductsを一旦変数に代入
 const productsRef = db.collection('products');
@@ -8,6 +9,7 @@ const productsRef = db.collection('products');
 //TODO idとcreate_atは必須なのでpartialを無くす
 //productのdataの型
 type productDataType = {
+  images: imageType[];
   id?: string;
   name: string;
   description: string;
@@ -19,13 +21,14 @@ type productDataType = {
 }
 
 //商品を追加、編集する時に実行される関数
-export const saveProducts = (name: string, description: string, category: string, gender: string, price: string) => {
+export const saveProducts = (images: imageType[], name: string, description: string, category: string, gender: string, price: string) => {
   return async (dispatch: React.Dispatch<unknown>) => {
     //現在の時刻
     const timestamp = FirebaseTimestamp.now();
 
     //productのdata(更新用)
     const data: productDataType = {
+      images,
       name,
       description,
       category,
