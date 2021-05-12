@@ -3,3 +3,9 @@ export type imageType = {
   id: string;
   path: string;
 };
+
+//productのサイズの型
+export type sizeType = {
+  size: string;
+  quantity: number
+}
